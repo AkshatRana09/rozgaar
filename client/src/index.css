@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6C63FF;
+  --color-primary-dark: #5A52D5;
+  --color-accent: #FF6584;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  
+  --color-gray-900: #111827;
+  --color-gray-800: #374151;
+  --color-gray-500: #6B7280;
+  --color-gray-300: #D1D5DB;
+  --color-gray-50: #F9FAFB;
+}
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 font-sans antialiased selection:bg-primary/20 selection:text-primary;
+  }
+}
+
+/* Linear-style grid background */
+.bg-grid-pattern {
+  background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Subtle dots pattern */
+.bg-dots-pattern {
+  background-image: radial-gradient(#6C63FF 0.5px, transparent 0.5px);
+  background-size: 10px 10px;
+}
+
+/* Button styles for consistency */
+.btn-primary {
+  @apply bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-200 active:scale-95 shadow-sm;
+}
+
+.btn-ghost {
+  @apply text-gray-500 px-5 py-2.5 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-200 active:scale-95;
+}
+
+.btn-outline {
+  @apply border border-gray-200 text-gray-700 px-5 py-2.5 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-200 active:scale-95;
+}
+
+/* Status Badges */
+.badge {
+  @apply px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider border;
+}
+
+.badge-success { @apply bg-success/10 text-success border-success/20; }
+.badge-warning { @apply bg-warning/10 text-warning border-warning/20; }
+.badge-danger { @apply bg-danger/10 text-danger border-danger/20; }
+.badge-info { @apply bg-primary/10 text-primary border-primary/20; }
+
+/* Custom scrollbar for better startup feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+}

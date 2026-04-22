@@ -1,6 +1,7 @@
 import Application from '../models/Application.js';
 import Job from '../models/Job.js';
 import { io } from '../index.js';
+import { scoreResume } from '../utils/aiScoring.js';
 
 // @POST /api/applications/:jobId - Apply for a job (seeker only)
 export const applyJob = async (req, res) => {
@@ -34,12 +35,32 @@ export const applyJob = async (req, res) => {
         }
 
         // Create application
+        // Extract text for AI scoring
+        let aiResult = { score: 0, feedback: '', matchedSkills: [], missingSkills: [] };
+        try {
+            const resumeText = `
+            Cover Letter: ${coverLetter || 'Not provided'}
+            Applicant Skills: ${req.user.skills?.join(', ') || 'Not listed'}
+            Bio: ${req.user.bio || 'Not provided'}
+          `;
+            aiResult = await scoreResume(
+                resumeText,
+                job.description,
+                job.skills
+            );
+        } catch (err) {
+            console.log('AI scoring skipped:', err.message);
+        }
+
+        // Create application with AI score
         const application = await Application.create({
             job: jobId,
             applicant: req.user._id,
             recruiter: job.postedBy,
             resume: resume || req.user.resume,
-            coverLetter
+            coverLetter,
+            aiScore: aiResult.score,
+            aiFeedback: aiResult.feedback
         });
 
         // Notify recruiter in real-time

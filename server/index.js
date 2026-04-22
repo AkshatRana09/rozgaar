@@ -7,6 +7,7 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import connectDB from './config/db.js';
 import jobRoutes from './routes/jobRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 import applicationRoutes from './routes/applicationRoutes.js';
 
 dotenv.config();
@@ -31,6 +32,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/applications', applicationRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Test route
 app.get('/', (req, res) => {

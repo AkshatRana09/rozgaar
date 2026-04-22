@@ -38,9 +38,9 @@ const Jobs = () => {
           <form onSubmit={handleSearch} className='flex flex-col md:flex-row gap-4'>
             <div className='flex-1 relative'>
               <span className='absolute left-5 top-1/2 -translate-y-1/2 text-gray-400'>🔍</span>
-              <input 
-                type='text' 
-                placeholder='Search by role, company, or tech stack...' 
+              <input
+                type='text'
+                placeholder='Search by role, company, or tech stack...'
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 className='w-full pl-12 pr-6 py-4 bg-gray-50 border border-gray-100 rounded-xl focus:bg-white focus:border-primary outline-none transition-all font-medium'
@@ -53,40 +53,41 @@ const Jobs = () => {
 
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
         <div className='flex flex-col lg:flex-row gap-10'>
-          
+
           {/* Sticky Sidebar Filters */}
           <aside className='lg:w-1/4 space-y-8'>
             <div className='bg-white p-6 rounded-2xl border border-gray-100 shadow-sm sticky top-24'>
               <h3 className='text-sm font-black uppercase tracking-widest text-gray-400 mb-6'>Filters</h3>
-              
+
               <div className='space-y-6'>
                 <div>
                   <label className='text-xs font-bold text-gray-700 block mb-2'>Job Type</label>
-                  <select 
+                  <select
                     value={filters.jobType}
-                    onChange={e => setFilters({...filters, jobType: e.target.value})}
+                    onChange={e => setFilters({ ...filters, jobType: e.target.value })}
                     className='w-full p-3 bg-gray-50 border border-gray-100 rounded-xl text-sm font-medium focus:bg-white focus:border-primary outline-none cursor-pointer transition-all'
                   >
                     <option value=''>All Types</option>
-                    <option value='Full-time'>Full-time</option>
-                    <option value='Part-time'>Part-time</option>
-                    <option value='Contract'>Contract</option>
-                    <option value='Internship'>Internship</option>
+                    <option value='full-time'>Full-time</option>
+                    <option value='part-time'>Part-time</option>
+                    <option value='contract'>Contract</option>
+                    <option value='internship'>Internship</option>
+                    <option value='remote'>Remote</option>
                   </select>
                 </div>
 
                 <div>
                   <label className='text-xs font-bold text-gray-700 block mb-2'>Location</label>
-                  <input 
-                    type='text' 
-                    placeholder='e.g. Remote, Delhi' 
+                  <input
+                    type='text'
+                    placeholder='e.g. Remote, Delhi'
                     value={filters.location}
-                    onChange={e => setFilters({...filters, location: e.target.value})}
+                    onChange={e => setFilters({ ...filters, location: e.target.value })}
                     className='w-full p-3 bg-gray-50 border border-gray-100 rounded-xl text-sm font-medium focus:bg-white focus:border-primary outline-none'
                   />
                 </div>
 
-                <button 
+                <button
                   onClick={() => setFilters({ jobType: '', location: '', experience: '' })}
                   className='text-xs font-bold text-primary hover:underline w-full pt-4'
                 >
@@ -107,27 +108,25 @@ const Jobs = () => {
             ) : jobs.length > 0 ? (
               <div className='space-y-4'>
                 {jobs.map(job => (
-                  <Link 
-                    key={job._id} 
+                  <Link
+                    key={job._id}
                     to={`/jobs/${job._id}`}
                     className='block bg-white p-6 rounded-2xl border border-gray-100 hover:border-primary/20 hover:shadow-sm transition-all duration-200 group'
                   >
                     <div className='flex items-start gap-6'>
                       <div className='w-14 h-14 rounded-xl bg-gray-900 text-white flex items-center justify-center font-black text-xl flex-shrink-0'>
-                        {job.companyName?.charAt(0)}
+                        {job.company?.charAt(0)}
                       </div>
                       <div className='flex-1 space-y-2'>
                         <div className='flex justify-between items-start'>
                           <div>
                             <h3 className='text-lg font-bold text-gray-900 group-hover:text-primary transition-colors'>{job.title}</h3>
-                            <p className='text-sm text-gray-500 font-medium'>{job.companyName} • {job.location}</p>
-                          </div>
+                            <p className='text-sm text-gray-500 font-medium'>{job.company} • {job.location}</p>                          </div>
                           <div className='text-right'>
-                            <p className='text-sm font-bold text-gray-900'>₹{(job.salary / 100000).toFixed(1)}L - ₹{(job.salary * 1.5 / 100000).toFixed(1)}L</p>
-                            <p className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1'>Per Annum</p>
+                            <p className='text-sm font-bold text-gray-900'>₹{(job.salary?.min / 100000).toFixed(1)}L - ₹{(job.salary?.max / 100000).toFixed(1)}L</p>                            <p className='text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1'>Per Annum</p>
                           </div>
                         </div>
-                        
+
                         <div className='flex flex-wrap gap-2 pt-2'>
                           <span className='badge badge-info'>{job.jobType}</span>
                           {job.skills?.slice(0, 3).map(skill => (

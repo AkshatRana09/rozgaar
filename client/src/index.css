@@ -7,7 +7,7 @@
   --color-success: #10B981;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
-  
+
   --color-gray-900: #111827;
   --color-gray-800: #374151;
   --color-gray-500: #6B7280;
@@ -51,18 +51,49 @@
   @apply px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider border;
 }
 
-.badge-success { @apply bg-success/10 text-success border-success/20; }
-.badge-warning { @apply bg-warning/10 text-warning border-warning/20; }
-.badge-danger { @apply bg-danger/10 text-danger border-danger/20; }
-.badge-info { @apply bg-primary/10 text-primary border-primary/20; }
+.badge-success {
+  @apply bg-success/10 text-success border-success/20;
+}
+
+.badge-warning {
+  @apply bg-warning/10 text-warning border-warning/20;
+}
+
+.badge-danger {
+  @apply bg-danger/10 text-danger border-danger/20;
+}
+
+.badge-info {
+  @apply bg-primary/10 text-primary border-primary/20;
+}
 
 /* Custom scrollbar for better startup feel */
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
   @apply bg-transparent;
 }
+
 ::-webkit-scrollbar-thumb {
   @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    text-shadow: 0 0 0px transparent;
+  }
+
+  50% {
+    text-shadow: 0 0 20px rgba(108, 99, 255, 0.6),
+      0 0 40px rgba(108, 99, 255, 0.3),
+      0 0 60px rgba(108, 99, 255, 0.1);
+  }
+}
+
+.glow-text {
+  animation: glow-pulse 3s ease-in-out infinite;
 }

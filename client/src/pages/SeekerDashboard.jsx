@@ -76,7 +76,7 @@ const SeekerDashboard = () => {
               <span className='text-[10px] font-black text-gray-400 uppercase tracking-widest'>Live Tracker</span>
             </div>
           </div>
-          
+
           <div className='overflow-x-auto'>
             <table className='w-full text-left'>
               <thead>
@@ -95,21 +95,31 @@ const SeekerDashboard = () => {
                       <p className='font-bold text-gray-900 group-hover:text-primary transition-colors'>{app.job?.title}</p>
                       <p className='text-[10px] text-gray-400 font-bold uppercase tracking-tight'>{app.job?.jobType}</p>
                     </td>
-                    <td className='px-8 py-6 font-bold text-gray-500'>{app.job?.companyName}</td>
-                    <td className='px-8 py-6 font-medium text-gray-400 text-sm'>
+                    <td className='px-8 py-6 font-bold text-gray-500'>{app.job?.company}</td>                    <td className='px-8 py-6 font-medium text-gray-400 text-sm'>
                       {new Date(app.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
                     </td>
                     <td className='px-8 py-6'>
                       {getStatusBadge(app.status)}
                     </td>
                     <td className='px-8 py-6 text-right'>
-                      <button className='text-xs font-black text-danger hover:underline opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest'>
+                      <button
+                        onClick={async () => {
+                          try {
+                            await axios.delete(`/applications/${app._id}`);
+                            toast.success('Application withdrawn');
+                            setApplications(applications.filter(a => a._id !== app._id));
+                          } catch (error) {
+                            toast.error(error.response?.data?.message || 'Failed to withdraw');
+                          }
+                        }}
+                        className='text-xs font-black text-red-500 hover:underline opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest'
+                      >
                         Withdraw
                       </button>
                     </td>
                   </tr>
                 ))}
-                
+
                 {applications.length === 0 && (
                   <tr>
                     <td colSpan='5' className='px-8 py-20 text-center'>

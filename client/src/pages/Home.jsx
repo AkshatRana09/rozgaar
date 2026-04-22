@@ -12,12 +12,12 @@ const Home = () => {
                 <span className='w-2 h-2 bg-primary rounded-full animate-pulse'></span>
                 <span className='text-xs font-bold text-primary uppercase tracking-widest'>India's Premier Job Network</span>
               </div>
-              
+
               <h1 className='text-[56px] leading-[1.1] font-bold text-gray-900 tracking-tight'>
                 Find work that <br />
-                <span className='text-primary'>defines you.</span>
+                <span className='text-primary glow-text'>defines you.</span>
               </h1>
-              
+
               <p className='text-lg text-gray-500 max-w-lg leading-relaxed font-medium'>
                 Join 25,000+ professionals discovering opportunities from India's most innovative companies. Your next career milestone starts here.
               </p>
@@ -57,7 +57,7 @@ const Home = () => {
                   <button className='px-4 py-2 bg-primary/10 text-primary rounded-lg text-xs font-bold'>Apply Now</button>
                 </div>
               </div>
-              
+
               {/* Secondary floating element */}
               <div className='absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl border border-gray-100 shadow-xl animate-float-delayed flex items-center gap-4'>
                 <div className='w-10 h-10 bg-green-50 rounded-full flex items-center justify-center text-green-600'>✓</div>
@@ -69,7 +69,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Subtle grid pattern background */}
         <div className='absolute inset-0 bg-grid-pattern opacity-[0.4] -z-10'></div>
       </section>
@@ -111,20 +111,20 @@ const Home = () => {
 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
           {[
-            { 
-              title: "Quality First", 
-              desc: "No more spam. We manually verify every job and company to ensure a high-quality experience.", 
-              icon: "✨" 
+            {
+              title: "Quality First",
+              desc: "No more spam. We manually verify every job and company to ensure a high-quality experience.",
+              icon: "✨"
             },
-            { 
-              title: "Instant Feedback", 
-              desc: "Know exactly where you stand. Real-time status updates from recruiters at every stage.", 
-              icon: "⚡" 
+            {
+              title: "Instant Feedback",
+              desc: "Know exactly where you stand. Real-time status updates from recruiters at every stage.",
+              icon: "⚡"
             },
-            { 
-              title: "AI Power-ups", 
-              desc: "Automated resume parsing and smart matching that connects you with the right roles instantly.", 
-              icon: "🤖" 
+            {
+              title: "AI Power-ups",
+              desc: "Automated resume parsing and smart matching that connects you with the right roles instantly.",
+              icon: "🤖"
             }
           ].map((feature, i) => (
             <div key={i} className='group p-8 rounded-3xl border border-gray-100 hover:border-primary/20 hover:bg-white hover:shadow-2xl transition-all duration-300'>

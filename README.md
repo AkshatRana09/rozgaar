@@ -46,6 +46,7 @@ Rozgaar is a production-grade full-stack job portal where:
 - JWT-based auth with httpOnly cookies
 - Role-based access control (Seeker / Recruiter / Admin)
 - Secure password hashing with bcryptjs
+- ///
 
 ### 💼 Job Management
 - Post, edit, delete jobs (Recruiter)

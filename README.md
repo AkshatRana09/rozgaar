@@ -1,7 +1,7 @@
 ..# Rozgaar 🇮🇳...
 ..
 ### *Apna Kaam, Apni Pehchaan*..
-..
+....
 > India's AI-powered job portal and applicant tracking system built with the MERN stack.
 
 ![Rozgaar](https://img.shields.io/badge/Rozgaar-AI%20Job%20Portal-6C63FF?style=for-the-badge)
